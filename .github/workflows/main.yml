@@ -7,7 +7,7 @@ on:
         description: 'Pilih Versi OS Environment'
         required: true
         type: choice
-        default: 'windows-latest'
+        default: 'windows-2022'
         options:
           - windows-latest
           - windows-2025
@@ -19,7 +19,7 @@ on:
 
 jobs:
   deploy-workspace:
-    runs-on: ${{ github.event.inputs.osChoice || 'windows-latest' }}
+    runs-on: ${{ github.event.inputs.osChoice || 'windows-2022' }}
     timeout-minutes: 360
 
     steps:
@@ -27,7 +27,7 @@ jobs:
         env:
           USER: ${{ github.event.inputs.customUsername || 'thyocloud' }}
           REPO: ${{ github.event.repository.name }}
-          OS_TYPE: ${{ github.event.inputs.osChoice || 'windows-latest' }}
+          OS_TYPE: ${{ github.event.inputs.osChoice || 'windows-2022' }}
           TIMEOUT_MIN: '360'
         run: |
           Write-Host "Environment Terpilih: $env:OS_TYPE (Batas Timer: $env:TIMEOUT_MIN Menit)"
